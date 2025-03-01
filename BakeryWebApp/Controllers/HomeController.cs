@@ -11,14 +11,25 @@ namespace BakeryWebApp.Controllers
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+            TempData["CurrentEmployee"] = null;
+            TempData.Keep();
         }
 
         public IActionResult Index()
         {
-            return View();
+            if (TempData["CurrentEmployee"] is null)
+                TempData.Keep();
+                return RedirectToAction("Login");
+
+            var model = new HomeViewModel()
+            {
+                CurrentEmployee = (Employee)TempData["CurrentEmployee"],
+            };
+            return View(model);
         }
 
-        public IActionResult Privacy()
+        [Route("[action]/{slug}")]
+        public IActionResult Login(string? slug)
         {
             return View();
         }
