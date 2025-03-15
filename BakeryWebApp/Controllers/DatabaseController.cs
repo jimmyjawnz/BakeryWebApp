@@ -11,6 +11,7 @@ namespace BakeryWebApp.Controllers
         }
 
         [HttpGet]
+        [Route("db/products")]
         public IActionResult ProductList()
         {
             DatabaseViewModel viewModel = new() { 
@@ -43,6 +44,13 @@ namespace BakeryWebApp.Controllers
                 ]
             };
             return View(viewModel);
+        }
+
+        [HttpGet]
+        [Route("db/product/edit/{slug}")]
+        public IActionResult ProductEdit(string slug, int id)
+        {
+            return View();
         }
     }
 }
