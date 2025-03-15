@@ -28,6 +28,15 @@ namespace BakeryWebApp.Models
 
         [Required(ErrorMessage = "Product group is required.")]
         public int GroupId { get; set; }
-        public Group? ProductGroup { get; set; }
+        [Required(ErrorMessage = "Product group is required.")]
+        public Group ProductGroup { get; set; }
+
+        public string Slug
+        {
+            get
+            {
+                return ProductName.ToLower().Replace(" ", "") + "-" + ProductId.ToString();
+            }
+        }
     }
 }
