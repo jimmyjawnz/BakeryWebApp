@@ -15,8 +15,8 @@ namespace BakeryWebApp.Models
         [AllowNull]
         public ICollection<Product>? Products { get; }
 
-        public int CategoryId { get; set; }
         [Required(ErrorMessage = "Group's category is required.")]
-        public Category GroupCategory { get; set; }
+        public int CategoryId { get; set; }
+        public Category? GroupCategory { get; set; }
     }
 }

@@ -26,8 +26,8 @@ namespace BakeryWebApp.Models
         [DefaultValue(false)]
         public bool IsAvailable { get; set; } = false;
 
-        public int GroupId { get; set; }
         [Required(ErrorMessage = "Product group is required.")]
-        public Group ProductGroup { get; set; }
+        public int GroupId { get; set; }
+        public Group? ProductGroup { get; set; }
     }
 }

@@ -11,6 +11,7 @@ namespace BakeryWebApp.Controllers
         }
 
         [HttpGet]
+        [Route("db/products")]
         public IActionResult ProductList()
         {
             DatabaseViewModel viewModel = new() { 
@@ -43,6 +44,22 @@ namespace BakeryWebApp.Controllers
                 ]
             };
             return View(viewModel);
+        }
+
+        [HttpGet]
+        [Route("db/products/{id}")]
+        public IActionResult EditProduct(int id)
+        {
+            ViewBag.Groups = new List<Group> { new Group() { CategoryId = 1, GroupId = 1, GroupName = "Bread" } };
+            return View(new Product()
+            {
+                ProductId = 1,
+                ProductName = "White Bread",
+                ProductPrice = 10.0d,
+                ProductDescription = "Loaf of white bread.",
+                GroupId = 1,
+                IsAvailable = true
+            });
         }
     }
 }
