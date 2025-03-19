@@ -23,13 +23,12 @@ namespace BakeryWebApp.Models
         [MaxLength(128, ErrorMessage = "Product description must be under 128 characters.")]
         public string? ProductDescription { get; set; }
 
-        [DefaultValue(false)]
-        public bool IsAvailable { get; set; } = false;
+        [DefaultValue(true)]
+        public bool IsAvailable { get; set; } = true;
 
         [Required(ErrorMessage = "Product group is required.")]
         public int GroupId { get; set; }
-        [Required(ErrorMessage = "Product group is required.")]
-        public Group ProductGroup { get; set; }
+        public Group? ProductGroup { get; set; }
 
         public string Slug
         {

@@ -47,8 +47,8 @@ namespace BakeryWebApp.Controllers
         }
 
         [HttpGet]
-        [Route("db/products/{id}")]
-        public IActionResult EditProduct(int id)
+        [Route("db/products/edit/{slug}")]
+        public IActionResult ProductEdit(string slug, int id)
         {
             ViewBag.Groups = new List<Group> { new Group() { CategoryId = 1, GroupId = 1, GroupName = "Bread" } };
             return View(new Product()
@@ -58,8 +58,28 @@ namespace BakeryWebApp.Controllers
                 ProductPrice = 10.0d,
                 ProductDescription = "Loaf of white bread.",
                 GroupId = 1,
-                IsAvailable = true
+                IsAvailable = false
             });
+        }
+
+        [HttpPost]
+        public IActionResult ProductEdit(Product product)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(product);
+            }
+
+
+            return View("ProductList");
+        }
+
+        [HttpGet]
+        [Route("db/products/add")]
+        public IActionResult ProductAdd()
+        {
+            ViewBag.Groups = new List<Group> { new Group() { CategoryId = 1, GroupId = 1, GroupName = "Bread" } };
+            return View();
         }
     }
 }

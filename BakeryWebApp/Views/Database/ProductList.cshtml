@@ -6,7 +6,7 @@
 <div id="content">
     <div>
         <h2>@ViewBag.Title</h2>
-        <a asp-controller="Database" asp-action="AddProduct" class="btn btn-primary">New Product</a>
+        <a asp-controller="Database" asp-action="ProductAdd" class="btn btn-primary mb-3">New Product</a>
         <table class="table table-bordered table-striped">
             <tr>
                 <th>Name</th>
@@ -32,7 +32,7 @@
                             }
                         </td>
                         <td>
-                            <a asp-controller="Database" asp-action="EditProduct" asp-route-id="@product.ProductId" class="btn btn-info">Edit</a>
+                            <a asp-controller="Database" asp-action="ProductEdit" asp-route-slug="@product.Slug" asp-route-id="@product.ProductId" class="btn btn-info">Edit</a>
                         </td>
                     </tr>
                 }
