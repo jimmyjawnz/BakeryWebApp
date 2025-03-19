@@ -12,6 +12,7 @@
                 <th>Name</th>
                 <th>Price</th>
                 <th>Description</th>
+                <th>Group</th>
                 <th>Availability</th>
                 <th> </th>
             </tr>
@@ -21,6 +22,7 @@
                         <td>@product.ProductName</td>
                         <td>@String.Format("{0:C2}", product.ProductPrice)</td>
                         <td>@product.ProductDescription</td>
+                        <td>@product.GroupSlug</td>
                         <td>
                             @if (product.IsAvailable)
                             {

@@ -12,7 +12,6 @@ namespace BakeryWebApp.Models
         [Length(1, 128, ErrorMessage = "Category name must be between 1 and 128 characters.")]
         public string CategoryName { get; set; } = "Unnamed Category";
 
-        [AllowNull]
-        public ICollection<Group>? Groups { get; }
+        public ICollection<Group> Groups { get; set; }
     }
 }

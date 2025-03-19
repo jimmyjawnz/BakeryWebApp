@@ -90,7 +90,7 @@ namespace BakeryWebApp.Models
                 new Group
                 {
                     GroupId = 3,
-                    GroupName = "White",
+                    GroupName = "Rice",
                     CategoryId = 1
                 },
                 new Group
