@@ -1,0 +1,48 @@
+﻿@using BakeryWebApp.Models.Database
+@model DatabaseViewModel
+@{
+    ViewData["Title"] = "Products";
+}
+
+<div id="content">
+    <div>
+        <h2>@ViewBag.Title</h2>
+        <a asp-controller="Database" asp-action="ProductAdd" class="btn btn-primary mb-3">New Product</a>
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Description</th>
+                <th>Group</th>
+                <th>Availability</th>
+                <th> </th>
+            </tr>
+            <tbody>
+                @foreach (Product product in Model.Products) {
+                    <tr>
+                        <td>@product.ProductName</td>
+                        <td>@String.Format("{0:C2}", product.ProductPrice)</td>
+                        <td>@product.ProductDescription</td>
+                        <td>@product.GroupSlug</td>
+                        <td>
+                            @if (product.IsAvailable)
+                            {
+                                <i class="fa-solid fa-check text-success"></i>
+                                <span class="text-success-emphasis"> Yes</span>
+                            }
+                            else
+                            {
+                                <i class="fa-solid fa-xmark text-danger"></i>
+                                <span class="text-danger-emphasis"> No</span>
+                            }
+                        </td>
+                        <td>
+                            <a asp-controller="Database" asp-action="ProductEdit" asp-route-slug="@product.Slug" asp-route-id="@product.ProductId" class="btn btn-info">Edit</a>
+                            <a asp-controller="Database" asp-action="ProductDelete" asp-route-slug="@product.Slug" asp-route-id="@product.ProductId" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
