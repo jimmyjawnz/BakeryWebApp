@@ -96,13 +96,13 @@ namespace BakeryWebApp.Controllers
         public IActionResult ProductAdd()
         {
             PopulateGroupsDropDownList();
-            return View();
+            return View(new Product());
         }
 
         [HttpPost]
-        [Route("db/products/add")]
+        [Route("db/products/add/{product?}")]
         [ValidateAntiForgeryToken]
-        public IActionResult ProductAdd([Bind("ProductId,IsAvailable,ProductName,ProductPrice,ProductDescription,GroupId")] Product product)
+        public IActionResult ProductAdd(Product product)
         {
             if (!ModelState.IsValid)
             {
@@ -137,6 +137,27 @@ namespace BakeryWebApp.Controllers
             _context.SaveChanges();
 
             return RedirectToAction("ProductList");
+        }
+
+
+
+
+        // Categories
+
+        [HttpGet]
+        [Route("db/categories")]
+        public IActionResult CategoryList()
+        {
+            DatabaseViewModel viewModel = new()
+            {
+                Categories = _context.Categories
+                .Include(c => c.Groups)
+                    .ThenInclude(c => c.Products)
+                .AsNoTracking()
+                .OrderBy(c => c.CategoryName)
+                .ToList()
+            };
+            return View(viewModel);
         }
     }
 }

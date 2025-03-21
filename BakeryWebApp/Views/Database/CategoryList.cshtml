@@ -1,0 +1,35 @@
+﻿@using BakeryWebApp.Models.Database
+@model DatabaseViewModel
+@{
+    ViewData["Title"] = "Categories and Groups";
+}
+
+<div id="content">
+    <div>
+        <h2>@ViewBag.Title</h2>
+        <a asp-controller="Database" asp-action="CategoryAdd" class="btn btn-primary mb-3">New Category</a>
+
+        <div id="categoryList">
+            @foreach (Category category in Model.Categories)
+            {
+                <div class="card border-primary m-3" style="max-width: 20rem;">
+                    <div class="card-header" style="padding-right: 0px;">
+                        @category.CategoryName
+                        <span class="badge" style="margin-left: 3rem;">
+                            <a asp-controller="Database" asp-action="CategoryEdit" asp-route-slug="@category.Slug" asp-route-id="@category.CategoryId" class="btn btn-info"><i class="fa-solid fa-pen"></i></a>
+                        </span>
+                    </div>
+                    <ul class="list-group">
+                        @foreach (Group group in category.Groups)
+                        {
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                @group.GroupName
+                                <span class="badge bg-secondary rounded-pill" style="margin-left: 1rem;">@group.Products.Count</span>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -13,5 +13,14 @@ namespace BakeryWebApp.Models.Database
         public string CategoryName { get; set; } = "Unnamed Category";
 
         public ICollection<Group> Groups { get; set; }
+
+        public string Slug
+        {
+            get
+            {
+                if (CategoryName == null) return "nan";
+                return CategoryName.ToLower().Replace(" ", "") + "-" + CategoryId.ToString();
+            }
+        }
     }
 }

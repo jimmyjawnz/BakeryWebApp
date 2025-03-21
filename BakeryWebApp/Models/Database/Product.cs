@@ -12,7 +12,7 @@ namespace BakeryWebApp.Models.Database
         public int ProductId { get; set; }
 
         [Required(ErrorMessage = "Product name is required.")]
-        [Length(1, 128, ErrorMessage = "Product name must be between 1 and 128 characters.")]
+        [Length(1, 35, ErrorMessage = "Product name must be between 1 and 35 characters.")]
         public string ProductName { get; set; } = "Unnamed Product";
 
         [Required(ErrorMessage = "Product price is required.")]
@@ -22,7 +22,7 @@ namespace BakeryWebApp.Models.Database
         public double ProductPrice { get; set; } = 0.00d;
 
         [AllowNull]
-        [MaxLength(255, ErrorMessage = "Product description must be under 255 characters.")]
+        [MaxLength(35, ErrorMessage = "Product description must be under 35 characters.")]
         public string? ProductDescription { get; set; }
 
         [DefaultValue(true)]
