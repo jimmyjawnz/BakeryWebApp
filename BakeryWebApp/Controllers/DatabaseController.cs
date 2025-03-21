@@ -66,9 +66,6 @@ namespace BakeryWebApp.Controllers
         [Route("db/products/edit/{slug}")]
         public IActionResult ProductEdit(int? id, string slug)
         {
-
-            ViewBag.Groups = _context.Groups.OrderBy(g => g.GroupName).ToList();
-
             Product? product = _context.Products.Find(id);
             if (product == null) return NotFound();
 
@@ -90,7 +87,6 @@ namespace BakeryWebApp.Controllers
             _context.Products.Update(product);
             _context.SaveChanges();
 
-            PopulateGroupsDropDownList(product.GroupId);
             return RedirectToAction("ProductList");
         }
 
@@ -117,6 +113,27 @@ namespace BakeryWebApp.Controllers
             product.ProductGroup = _context.Groups.Find(product.GroupId);
 
             _context.Products.Add(product);
+            _context.SaveChanges();
+
+            return RedirectToAction("ProductList");
+        }
+
+        [HttpGet]
+        [Route("db/products/delete/{slug}")]
+        public IActionResult ProductDelete(int id, string slug)
+        {
+            Product? product = _context.Products.Find(id);
+            if (product == null) return NotFound();
+
+            return View(product);
+        }
+
+        [HttpPost]
+        [Route("db/products/delete/{slug?}/{product?}")]
+        [ValidateAntiForgeryToken]
+        public IActionResult ProductDelete(Product product, string? slug)
+        {
+            _context.Products.Remove(product);
             _context.SaveChanges();
 
             return RedirectToAction("ProductList");

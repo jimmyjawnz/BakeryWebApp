@@ -38,6 +38,7 @@
                         </td>
                         <td>
                             <a asp-controller="Database" asp-action="ProductEdit" asp-route-slug="@product.Slug" asp-route-id="@product.ProductId" class="btn btn-info">Edit</a>
+                            <a asp-controller="Database" asp-action="ProductDelete" asp-route-slug="@product.Slug" asp-route-id="@product.ProductId" class="btn btn-danger">Delete</a>
                         </td>
                     </tr>
                 }
