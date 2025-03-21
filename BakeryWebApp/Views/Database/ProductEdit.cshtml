@@ -1,4 +1,5 @@
-﻿@model Product
+﻿@using BakeryWebApp.Models.Database
+@model Product
 @{
     ViewData["Title"] = "Edit " + Model.ProductName;
 }
@@ -17,7 +18,7 @@
 
             <div class="form-group mb-3">
                 <label asp-for="ProductId" class="form-label">ID</label>
-                <input asp-for="ProductId" class="form-control" disabled />
+                <input asp-for="ProductId" type="hidden" class="form-control" />
                 <div class="form-text">This value is can not be changed.</div>
             </div>
 
@@ -33,7 +34,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroupPrepend">$</span>
                     </div>
-                    <input asp-for="ProductPrice" type="number" class="form-control" aria-describedby="inputGroupPrepend" />
+                    <input asp-for="ProductPrice" type="text" class="form-control" aria-describedby="inputGroupPrepend" />
                 </div>
                 <span asp-validation-for="ProductPrice" class="form-text text-danger"></span>
             </div>

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using BakeryWebApp.Models.Database;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 

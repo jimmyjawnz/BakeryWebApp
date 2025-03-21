@@ -1,4 +1,5 @@
-﻿@model DatabaseViewModel
+﻿@using BakeryWebApp.Models.Database
+@model DatabaseViewModel
 @{
     ViewData["Title"] = "Products";
 }
@@ -26,11 +27,13 @@
                         <td>
                             @if (product.IsAvailable)
                             {
-                                <text>Yes</text>
+                                <i class="fa-solid fa-check text-success"></i>
+                                <span class="text-success-emphasis"> Yes</span>
                             }
                             else
                             {
-                                <text>No</text>
+                                <i class="fa-solid fa-xmark text-danger"></i>
+                                <span class="text-danger-emphasis"> No</span>
                             }
                         </td>
                         <td>

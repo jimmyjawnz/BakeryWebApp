@@ -1,4 +1,6 @@
-﻿namespace BakeryWebApp.Models
+﻿using BakeryWebApp.Models.Database;
+
+namespace BakeryWebApp.Models
 {
     public class DatabaseViewModel
     {

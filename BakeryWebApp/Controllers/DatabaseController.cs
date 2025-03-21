@@ -1,4 +1,5 @@
 ﻿using BakeryWebApp.Models;
+using BakeryWebApp.Models.Database;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +17,16 @@ namespace BakeryWebApp.Controllers
 
         public BakeryContext _context;
 
+        [HttpPost]
+        public IActionResult ProductList(int id)
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// Populates the Dropdown list for Groups that include a GroupName containing GroupName + CategoryName
+        /// </summary>
+        /// <param name="selectedGroup"></param>
         private void PopulateGroupsDropDownList(object selectedGroup = null)
         {
             var groupsQuery = from g in _context.Groups
@@ -53,32 +64,33 @@ namespace BakeryWebApp.Controllers
 
         [HttpGet]
         [Route("db/products/edit/{slug}")]
-        public IActionResult ProductEdit(string slug, int id)
+        public IActionResult ProductEdit(int? id, string slug)
         {
 
             ViewBag.Groups = _context.Groups.OrderBy(g => g.GroupName).ToList();
 
             Product? product = _context.Products.Find(id);
+            if (product == null) return NotFound();
 
-            return View("ProductEdit", product);
+            PopulateGroupsDropDownList(product.GroupId);
+            return View(product);
         }
 
         [HttpPost]
-        [Route("db/products/edit/{slug}")]
         [ValidateAntiForgeryToken]
-        public IActionResult ProductEdit([Bind("ProductId,IsAvailable,ProductName,ProductPrice,ProductDescription,GroupId")] Product product, string slug)
+        [Route("db/products/edit/{slug?}/{product?}")]
+        public IActionResult ProductEdit(Product product, string? slug)
         {
             if (!ModelState.IsValid)
             {
                 PopulateGroupsDropDownList(product.GroupId);
-                return View(slug);
+                return View(product);
             }
 
-            product.ProductGroup = _context.Groups.Find(product.GroupId);
-
-            _context.Products.Add(product);
+            _context.Products.Update(product);
             _context.SaveChanges();
 
+            PopulateGroupsDropDownList(product.GroupId);
             return RedirectToAction("ProductList");
         }
 

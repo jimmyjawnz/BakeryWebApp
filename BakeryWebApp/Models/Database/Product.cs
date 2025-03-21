@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Data.SqlTypes;
 using System.Diagnostics.CodeAnalysis;
 
-namespace BakeryWebApp.Models
+namespace BakeryWebApp.Models.Database
 {
     public class Product
     {
@@ -17,7 +17,7 @@ namespace BakeryWebApp.Models
 
         [Required(ErrorMessage = "Product price is required.")]
         [DataType(DataType.Currency, ErrorMessage = "Product price is required.")]
-        [Range(0.0d, Double.MaxValue, ErrorMessage = "Product price must be a positive value.")]
+        [Range(0.0d, double.MaxValue, ErrorMessage = "Product price must be a positive value.")]
         [DefaultValue(0.00d)]
         public double ProductPrice { get; set; } = 0.00d;
 

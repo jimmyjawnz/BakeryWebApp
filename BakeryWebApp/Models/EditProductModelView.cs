@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
+using BakeryWebApp.Models.Database;
 
 namespace BakeryWebApp.Models
 {

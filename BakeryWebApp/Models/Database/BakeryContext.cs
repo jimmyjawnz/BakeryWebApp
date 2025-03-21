@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace BakeryWebApp.Models
+namespace BakeryWebApp.Models.Database
 {
     public class BakeryContext : DbContext
     {

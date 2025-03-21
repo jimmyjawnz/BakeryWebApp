@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 
-namespace BakeryWebApp.Models
+namespace BakeryWebApp.Models.Database
 {
     public class Group
     {
