@@ -1,0 +1,19 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "_DashboardLayout";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Dashboard</h1>
+    <div class="list-group">
+        <div class="list-group-item">
+            <a asp-action="Database">Database Access</a>
+        </div>
+        <div class="list-group-item">
+            <a asp-action="Reports">Reports</a>
+        </div>
+        <div class="list-group-item">
+            <a asp-action="Views">Views</a>
+        </div>
+    </div>
+</div>
