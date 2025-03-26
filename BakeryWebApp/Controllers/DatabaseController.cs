@@ -3,6 +3,7 @@ using BakeryWebApp.Models.Database;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using Microsoft.IdentityModel.Tokens;
 
 namespace BakeryWebApp.Controllers
@@ -37,6 +38,22 @@ namespace BakeryWebApp.Controllers
                               {
                                   g.GroupId,
                                   GroupName = g.GroupName + " " + (gc != null ? gc.CategoryName : "") // Include related data here
+                              };
+            ViewBag.GroupId = new SelectList(groupsQuery.AsNoTracking(), "GroupId", "GroupName", selectedGroup);
+        }
+
+        /// <summary>
+        /// Populates the Select list of Groups from given Category ID
+        /// </summary>
+        /// <param name="selectedGroup"></param>
+        private void PopulateGroupsSelectList(int categoryID, object selectedGroup = null)
+        {
+            var groupsQuery = from g in _context.Groups
+                              where g.CategoryId == categoryID
+                              select new
+                              {
+                                  g.GroupId,
+                                  g.GroupName
                               };
             ViewBag.GroupId = new SelectList(groupsQuery.AsNoTracking(), "GroupId", "GroupName", selectedGroup);
         }
@@ -158,6 +175,36 @@ namespace BakeryWebApp.Controllers
                 .ToList()
             };
             return View(viewModel);
+        }
+
+        [HttpGet]
+        [Route("db/categories/edit/{slug}")]
+        public IActionResult CategoryEdit(int? id, string slug)
+        {
+            Category? category = _context.Categories.Find(id);
+            if (category == null) return NotFound();
+
+            ViewBag.Groups = _context.Groups
+                                .Where(g => g.CategoryId == category.CategoryId)
+                                .OrderBy(g => g.GroupName).ToList();
+            return View(category);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("db/categories/edit/{slug?}/{product?}")]
+        public IActionResult CategoryEdit(Category category, string? slug)
+        {
+            if (!ModelState.IsValid)
+            {
+                PopulateGroupsSelectList(category.CategoryId);
+                return View(category);
+            }
+
+            _context.Categories.Update(category);
+            _context.SaveChanges();
+
+            return RedirectToAction("CategoryList");
         }
     }
 }
