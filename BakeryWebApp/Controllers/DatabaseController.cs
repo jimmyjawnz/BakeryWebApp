@@ -10,7 +10,6 @@ namespace BakeryWebApp.Controllers
 {
     public class DatabaseController : Controller
     {
-
         public DatabaseController(BakeryContext context)
         {
             _context = context;
@@ -58,10 +57,16 @@ namespace BakeryWebApp.Controllers
             ViewBag.GroupId = new SelectList(groupsQuery.AsNoTracking(), "GroupId", "GroupName", selectedGroup);
         }
 
+        [Route("db")]
         public IActionResult Index()
         {
             return View();
         }
+
+
+        //
+        // PRODUCTS
+        //
 
         [HttpGet]
         [Route("db/products")]
@@ -158,8 +163,9 @@ namespace BakeryWebApp.Controllers
 
 
 
-
-        // Categories
+        //
+        // CATEGORIES
+        //
 
         [HttpGet]
         [Route("db/categories")]

@@ -1,0 +1,33 @@
+﻿@using BakeryWebApp.Models.Database
+@model CategoryGroupDataModel
+@{
+    ViewData["Title"] = "Edit Category " + Model.CategoryName + " Groups";
+}
+
+<div id="content">
+    <div>
+        <h2 class="mb-3">@ViewBag.Title</h2>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <h4>Groups</h4>
+            <a asp-controller="Database" asp-action="GroupEdit" asp-route-id="@Model.CategoryId" class="btn btn-outline-info">Add a Group</a>
+            @foreach (Group group in Model.Groups)
+            {
+                <form asp-controller="Database" asp-action="GroupEdit">
+                    <div class="row mb-3">
+                        <div class="col">
+
+                        </div>
+                        <div class="col">
+
+                        </div>
+                        <label asp-for="Groups" class="form-label">ID</label>
+                        <input asp-for="Groups" type="hidden" class="form-control" />
+                        <div class="form-text">This value is can not be changed.</div>
+                    </div>
+                </form>
+            }
+
+            <a href='javascript:history.go(-1)' class="btn btn-secondary">Cancel</a>
+    </div>
+</div>

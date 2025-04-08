@@ -1,17 +1,21 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace BakeryWebApp.Models.Database
 {
-    public class BakeryContext : DbContext
+    public class BakeryContext : IdentityDbContext<Employee>
     {
         public BakeryContext(DbContextOptions<BakeryContext> options) : base(options) { }
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Group> Groups { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Customer> Customers { get; set; }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Category>().HasData(
                 new Category
                 {
