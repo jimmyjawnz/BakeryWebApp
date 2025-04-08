@@ -53,7 +53,7 @@ namespace BakeryWebApp.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProductName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ProductPrice = table.Column<double>(type: "float", nullable: false),
-                    ProductDescription = table.Column<string>(type: "nvarchar(128)", maxLength: 128, nullable: true),
+                    ProductDescription = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
                     IsAvailable = table.Column<bool>(type: "bit", nullable: false),
                     GroupId = table.Column<int>(type: "int", nullable: false)
                 },
