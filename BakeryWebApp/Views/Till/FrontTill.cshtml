@@ -43,7 +43,7 @@
     {
         <div class="row" style="min-height: 95vh">
             <div class="col-md-6 p-1">
-                <div class="h-100 bg-light">
+                <div class="h-100 bg-white">
                     <ul class="nav nav-tabs" role="tablist" data-bs-theme="dark">
                         <li class="nav-item" role="presentation">
                             <a class="nav-link active" data-bs-toggle="tab" data-bs-target="#products-tab" aria-selected="true" role="tab"><i class="fa-solid fa-cube me-1"></i> Products</a>
@@ -54,125 +54,171 @@
                     </ul>
                     <div id="tabContent" class="tab-content p-2 bg-dark" style="--bs-bg-opacity: .1;">
                         <div class="tab-pane show active" id="products-tab" role="tabpanel">
-                            <p>Products show here</p>
-                            <div class="row row-cols-auto align-items-start g-4 overflow-auto" style="max-height: 85vh">
-                                @foreach (Product product in Model.AvailableProducts)
-                                {
-                                    <div class="col">
-                                        <div class="card bg-success" style="--bs-bg-opacity: .6; width: 175px; height: 175px;">
-                                            <div class="card-body text-center p-0">
-                                                @* <svg class="d-block user-select-none" width="100%" height="100%" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180" style="font-size:2.125rem;text-anchor:middle"> *@
-                                                @*     <rect width="100%" height="100%" fill="#666"></rect> *@
-                                                @*     <text x="50%" y="50%" fill="#fff" dy=".3em">@product.ProductName</text> *@
-                                                @* </svg> *@
-                                            </div>
-                                            <div class="card-footer">
-                                                <form>
-                                                    @* <div class="input-group"> *@
-                                                    @*     <input type="number" placeholder="Qty" value="1" class="form-control" /> *@
-                                                    @*     <button type="submit" class="btn btn-primary">Add</button> *@
-                                                    @* </div> *@
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                }
-                                @foreach (Product product in Model.AvailableProducts)
-                                {
-                                    <div class="col">
-                                        <div class="card bg-success" style="--bs-bg-opacity: .6; width: 175px; height: 175px;">
-                                            <div class="card-body text-center p-0">
-                                                <svg class="d-block user-select-none" width="100%" height="100%" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180" style="font-size:2.125rem;text-anchor:middle">
-                                                    <rect width="100%" height="100%" fill="#666"></rect>
-                                                    <text x="50%" y="50%" fill="#fff" dy=".3em">@product.ProductName</text>
-                                                </svg>
-                                            </div>
-                                            <div class="card-footer">
-                                                <form>
-                                                    <div class="input-group">
-                                                        <input type="number" placeholder="Qty" value="1" class="form-control" />
-                                                        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-plus"></i></button>
-                                                    </div>
-                                                </form>
+                            @if (Model.AvailableProducts.Count <= 0 ) 
+                            {
+                                <div class="alert alert-light mt-3 h4">
+                                    No available products.
+                                </div>
+                            }
+                            else 
+                            {
+                                <div class="row row-cols-auto align-items-start g-4 overflow-auto" style="max-height: 85vh">
+                                    @foreach (Product product in Model.AvailableProducts)
+                                    {
+                                        <div class="col">
+                                            <div class="card bg-success" style="--bs-bg-opacity: .6; width: 175px; height: 175px;">
+                                                <div class="card-body text-center p-0">
+                                                    @* <svg class="d-block user-select-none" width="100%" height="100%" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180" style="font-size:2.125rem;text-anchor:middle"> *@
+                                                    @*     <rect width="100%" height="100%" fill="#666"></rect> *@
+                                                    @*     <text x="50%" y="50%" fill="#fff" dy=".3em">@product.ProductName</text> *@
+                                                    @* </svg> *@
+                                                </div>
+                                                <div class="card-footer">
+                                                    <form>
+                                                        @* <div class="input-group"> *@
+                                                        @*     <input type="number" placeholder="Qty" value="1" class="form-control" /> *@
+                                                        @*     <button type="submit" class="btn btn-primary">Add</button> *@
+                                                        @* </div> *@
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                }
-                                @foreach (Product product in Model.AvailableProducts)
-                                {
-                                    <div class="col">
-                                        <div class="card bg-success" style="--bs-bg-opacity: .6; width: 175px; height: 175px;">
-                                            <div class="card-body text-center p-0">
-                                                <svg class="d-block user-select-none" width="100%" height="100%" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180" style="font-size:2.125rem;text-anchor:middle">
-                                                    <rect width="100%" height="100%" fill="#666"></rect>
-                                                    <text x="50%" y="50%" fill="#fff" dy=".3em">@product.ProductName</text>
-                                                </svg>
-                                            </div>
-                                            <div class="card-footer">
-                                                <form>
-                                                    <div class="input-group">
-                                                        <input type="number" placeholder="Qty" value="1" class="form-control" />
-                                                        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-plus"></i></button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                }
-                                @foreach (Product product in Model.AvailableProducts)
-                                {
-                                    <div class="col">
-                                        <div class="card bg-success" style="--bs-bg-opacity: .6; width: 175px; height: 175px;">
-                                            <div class="card-body text-center p-0">
-                                                <svg class="d-block user-select-none" width="100%" height="100%" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180" style="font-size:2.125rem;text-anchor:middle">
-                                                    <rect width="100%" height="100%" fill="#666"></rect>
-                                                    <text x="50%" y="50%" fill="#fff" dy=".3em">@product.ProductName</text>
-                                                </svg>
-                                            </div>
-                                            <div class="card-footer">
-                                                <form>
-                                                    <div class="input-group">
-                                                        <input type="number" placeholder="Qty" value="1" class="form-control" />
-                                                        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-plus"></i></button>
-                                                    </div>
-                                                </form>
+                                    }
+                                    @foreach (Product product in Model.AvailableProducts)
+                                    {
+                                        <div class="col">
+                                            <div class="card bg-success" style="--bs-bg-opacity: .6; width: 175px; height: 175px;">
+                                                <div class="card-body text-center p-0">
+                                                    <svg class="d-block user-select-none" width="100%" height="100%" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180" style="font-size:2.125rem;text-anchor:middle">
+                                                        <rect width="100%" height="100%" fill="#666"></rect>
+                                                        <text x="50%" y="50%" fill="#fff" dy=".3em">@product.ProductName</text>
+                                                    </svg>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <form>
+                                                        <div class="input-group">
+                                                            <input type="number" placeholder="Qty" value="1" class="form-control" />
+                                                            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-plus"></i></button>
+                                                        </div>
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                }
-                                @foreach (Product product in Model.AvailableProducts)
-                                {
-                                    <div class="col">
-                                        <div class="card bg-success" style="--bs-bg-opacity: .6; width: 175px; height: 175px;">
-                                            <div class="card-body text-center p-0">
-                                                <svg class="d-block user-select-none" width="100%" height="100%" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180" style="font-size:2.125rem;text-anchor:middle">
-                                                    <rect width="100%" height="100%" fill="#666"></rect>
-                                                    <text x="50%" y="50%" fill="#fff" dy=".3em">@product.ProductName</text>
-                                                </svg>
-                                            </div>
-                                            <div class="card-footer">
-                                                <form>
-                                                    <div class="input-group">
-                                                        <input type="number" placeholder="Qty" value="1" class="form-control" />
-                                                        <button type="submit" class="btn btn-primary"><i class="fa-solid fa-plus"></i></button>
-                                                    </div>
-                                                </form>
+                                    }
+                                    @foreach (Product product in Model.AvailableProducts)
+                                    {
+                                        <div class="col">
+                                            <div class="card bg-success" style="--bs-bg-opacity: .6; width: 175px; height: 175px;">
+                                                <div class="card-body text-center p-0">
+                                                    <svg class="d-block user-select-none" width="100%" height="100%" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180" style="font-size:2.125rem;text-anchor:middle">
+                                                        <rect width="100%" height="100%" fill="#666"></rect>
+                                                        <text x="50%" y="50%" fill="#fff" dy=".3em">@product.ProductName</text>
+                                                    </svg>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <form>
+                                                        <div class="input-group">
+                                                            <input type="number" placeholder="Qty" value="1" class="form-control" />
+                                                            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-plus"></i></button>
+                                                        </div>
+                                                    </form>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                }
-                            </div>
+                                    }
+                                    @foreach (Product product in Model.AvailableProducts)
+                                    {
+                                        <div class="col">
+                                            <div class="card bg-success" style="--bs-bg-opacity: .6; width: 175px; height: 175px;">
+                                                <div class="card-body text-center p-0">
+                                                    <svg class="d-block user-select-none" width="100%" height="100%" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180" style="font-size:2.125rem;text-anchor:middle">
+                                                        <rect width="100%" height="100%" fill="#666"></rect>
+                                                        <text x="50%" y="50%" fill="#fff" dy=".3em">@product.ProductName</text>
+                                                    </svg>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <form>
+                                                        <div class="input-group">
+                                                            <input type="number" placeholder="Qty" value="1" class="form-control" />
+                                                            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-plus"></i></button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    @foreach (Product product in Model.AvailableProducts)
+                                    {
+                                        <div class="col">
+                                            <div class="card bg-success" style="--bs-bg-opacity: .6; width: 175px; height: 175px;">
+                                                <div class="card-body text-center p-0">
+                                                    <svg class="d-block user-select-none" width="100%" height="100%" aria-label="Placeholder: Image cap" focusable="false" role="img" preserveAspectRatio="xMidYMid slice" viewBox="0 0 318 180" style="font-size:2.125rem;text-anchor:middle">
+                                                        <rect width="100%" height="100%" fill="#666"></rect>
+                                                        <text x="50%" y="50%" fill="#fff" dy=".3em">@product.ProductName</text>
+                                                    </svg>
+                                                </div>
+                                                <div class="card-footer">
+                                                    <form>
+                                                        <div class="input-group">
+                                                            <input type="number" placeholder="Qty" value="1" class="form-control" />
+                                                            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-plus"></i></button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            }
                         </div>
                         <div class="tab-pane" id="orders-tab" role="tabpanel">
-                            <p>Orders show here</p>
+                            @if (Model.AvailableOrders.Count <= 0)
+                            {
+                                <div class="alert alert-light mt-3 h4">
+                                    No available orders.
+                                </div>
+                            }
+                            else
+                            {
+                                <p>Orders show here</p>
+                            }
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="row h-100 bg-black">
-                    <div class="col-md-6 bg-info">
-                        <span><i class="fa-solid fa-cart-shopping me-1"></i> Cart</span>
+                <div class="row h-100 bg-white">
+                    <div class="col-md-6 bg-white" style="--bs-bg-opacity: .2; padding: 0px;">
+                        <div class="card bg-light h-100">
+                            <div class="card-header"><i class="fa-solid fa-cart-shopping me-1"></i> Cart</div>
+                            <div class="card-body">
+                                <table class="table table-light table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th class="align-middle" width="10%">Qty</th>
+                                            <th>Name</th>
+                                            <th>Price</th>
+                                            <th width="20%"> </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="table-group-divider">
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Bread</td>
+                                            <td>10.00</td>
+                                            <td>
+                                                <a class="btn btn-danger">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+                                                        <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+                                                    </svg>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-6">
                         <div class="row h-50">
@@ -193,6 +239,8 @@
     }
     else
     {
-        <h2 class="mt-5">You must be signed in to access the till.</h2>
+        <div class="alert alert-light mt-3 h4">
+            Please sign in to access this page.
+        </div>
     }
 </div>

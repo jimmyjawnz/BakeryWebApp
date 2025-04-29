@@ -8,6 +8,9 @@ namespace BakeryWebApp.Models
         public List<Product> AvailableProducts { get; set; } = [];
 
         public List<Product> CustomerCart { get; set; } = [];
+
+        public List<Product> AvailableOrders { get; set; } = [];
+
         public double CartTotal { get; set; }
 
 
